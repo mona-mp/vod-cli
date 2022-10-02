@@ -7,8 +7,6 @@ package cmd
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"strings"
@@ -27,12 +25,16 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		updateDetail(args)
+		title, _ := cmd.Flags().GetString("title")
+		description, _ := cmd.Flags().GetString("description")
+		updateDetail(args, title, description)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(updateDetailCmd)
+	updateDetailCmd.PersistentFlags().String("title", "", "Update title for video")
+	updateDetailCmd.PersistentFlags().String("description", "", "Update description for video")
 
 	// Here you will define your flags and configuration settings.
 
@@ -45,19 +47,20 @@ func init() {
 	// updateDetailCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
-func updateDetail(args []string) {
-	args2 := strings.Join(args, "")
+func updateDetail(args []string, title string, description string) {
+	video_id := strings.Join(args, "")
+
 	payload, err := json.Marshal(map[string]interface{}{
-		"title":       "my simple todo",
-		"description": "ey khooooda che giri kardim",
+		"title":       title,
+		"description": description,
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 	client := &http.Client{}
-	url := "https://napi.arvancloud.com/vod/2.0/videos/" + args2
+	url := "https://napi.arvancloud.com/vod/2.0/videos/" + video_id
 	req, err := http.NewRequest(http.MethodPatch, url, bytes.NewBuffer(payload))
-	fmt.Println(req)
+
 	req.Header.Add("Authorization", "Apikey XXXX")
 	req.Header.Set("Content-Type", "application/json")
 	if err != nil {
@@ -71,10 +74,10 @@ func updateDetail(args []string) {
 
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
-	log.Println(string(body))
+	// body, err := ioutil.ReadAll(resp.Body)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// log.Println(string(body))
 
 }

@@ -61,7 +61,7 @@ func updateDetail(args []string, title string, description string) {
 	url := "https://napi.arvancloud.com/vod/2.0/videos/" + video_id
 	req, err := http.NewRequest(http.MethodPatch, url, bytes.NewBuffer(payload))
 
-	req.Header.Add("Authorization", "Apikey XXXX")
+	req.Header.Add("Authorization", readapikey())
 	req.Header.Set("Content-Type", "application/json")
 	if err != nil {
 		log.Fatal(err)

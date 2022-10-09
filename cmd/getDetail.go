@@ -54,7 +54,7 @@ func getDetail(args []string) {
 		log.Fatalf("error creating HTTP request: %v", err)
 	}
 
-	req.Header.Add("Authorization", "Apikey XXXX")
+	req.Header.Add("Authorization", readapikey())
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {

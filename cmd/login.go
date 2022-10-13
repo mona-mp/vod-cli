@@ -1,6 +1,5 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
@@ -15,7 +14,8 @@ import (
 var loginCmd = &cobra.Command{
 	Use:   "login",
 	Short: "A brief description of your command",
-	Long:  `Log in to Arvan API and save login for subsequent use`,
+	Long: `Log in to Arvan API and save login for subsequent use.example:
+	arvan-vod-cli login <APIKEY>`,
 	Run: func(cmd *cobra.Command, args []string) {
 		addapikey(args)
 	},
@@ -25,11 +25,13 @@ func init() {
 	rootCmd.AddCommand(loginCmd)
 }
 
+// get the config address
 func getdirectory() string {
 	homedir, _ := os.UserHomeDir()
 	return homedir + "/.arvan-vod/config"
 }
 
+// add API key to the config file
 func addapikey(args []string) {
 
 	a2 := args[1]
@@ -38,6 +40,7 @@ func addapikey(args []string) {
 
 }
 
+// read the API key
 func readapikey() (apikey string) {
 	ApiKey, _ := ioutil.ReadFile(getdirectory())
 

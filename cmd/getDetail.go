@@ -1,7 +1,3 @@
-/*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
-*/
 package cmd
 
 import (
@@ -16,32 +12,20 @@ import (
 // getDetailCmd represents the getDetail command
 var getDetailCmd = &cobra.Command{
 	Use:   "getDetail",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Get video detail",
+	Long: `Get the video detail using this command.example:
+	arvan-vod-cli getDetail <video-id>`,
 	Run: func(cmd *cobra.Command, args []string) {
 		getDetail(args)
 	},
 }
 
+// add flags
 func init() {
 	rootCmd.AddCommand(getDetailCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// getDetailCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// getDetailCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
+// sen GET request to get video detail function
 func getDetail(args []string) {
 	args2 := strings.Join(args, "")
 	req, err := http.NewRequest(
@@ -65,6 +49,5 @@ func getDetail(args []string) {
 	if err != nil {
 		log.Fatalf("error reading HTTP response body: %v", err)
 	}
-
 	log.Println("We got the response:", string(responseBytes))
 }

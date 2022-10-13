@@ -1,6 +1,5 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
@@ -17,36 +16,30 @@ import (
 // updateDetailCmd represents the updateDetail command
 var updateDetailCmd = &cobra.Command{
 	Use:   "updateDetail",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Update video title and description",
+	Long: `This command is used to update the datail of the
+	your video. You can pass the values to in by flags as a string.`,
 	Run: func(cmd *cobra.Command, args []string) {
+		// get the title and description value from user
+
 		title, _ := cmd.Flags().GetString("title")
 		description, _ := cmd.Flags().GetString("description")
+
+		// call the function to update the details
+
 		updateDetail(args, title, description)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(updateDetailCmd)
+
+	// create flags
 	updateDetailCmd.PersistentFlags().String("title", "", "Update title for video")
 	updateDetailCmd.PersistentFlags().String("description", "", "Update description for video")
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// updateDetailCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// updateDetailCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
+// send update request function
 func updateDetail(args []string, title string, description string) {
 	video_id := strings.Join(args, "")
 
@@ -73,11 +66,5 @@ func updateDetail(args []string, title string, description string) {
 	}
 
 	defer resp.Body.Close()
-
-	// body, err := ioutil.ReadAll(resp.Body)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// log.Println(string(body))
 
 }

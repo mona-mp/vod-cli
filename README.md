@@ -36,10 +36,11 @@ cobra init arvan-vod-cli
 
 It created a few files in the project:
 
-▾ arvan-vod-cli/
-&nbsp; ▾ cmd/
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root.go
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;main.go
+> arvan-vod-cli/
+>>&nbsp; cmd/
+>>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root.go
+>>
+>>main.go
 
 In the main.go, the Execute() function of the cmd/root.go is called. In root.go, the root command is initialized and is  ```arvan-vod-cli```.All the other command in the CLI is the child of the root command.
 

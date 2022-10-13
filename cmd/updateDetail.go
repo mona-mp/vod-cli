@@ -28,6 +28,7 @@ var updateDetailCmd = &cobra.Command{
 		// call the function to update the details
 
 		updateDetail(args, title, description)
+
 	},
 }
 

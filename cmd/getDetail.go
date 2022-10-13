@@ -1,6 +1,9 @@
 package cmd
 
 import (
+	"bytes"
+	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -25,7 +28,7 @@ func init() {
 	rootCmd.AddCommand(getDetailCmd)
 }
 
-// sen GET request to get video detail function
+// send GET request to get video detail function
 func getDetail(args []string) {
 	args2 := strings.Join(args, "")
 	req, err := http.NewRequest(
@@ -49,5 +52,19 @@ func getDetail(args []string) {
 	if err != nil {
 		log.Fatalf("error reading HTTP response body: %v", err)
 	}
-	log.Println("We got the response:", string(responseBytes))
+	res2, err2 := PrettyString(string(responseBytes))
+	if err != nil {
+		log.Fatal(err2)
+	}
+	fmt.Println(res2)
+
+}
+
+// function to get the prettyJSON
+func PrettyString(str string) (string, error) {
+	var prettyJSON bytes.Buffer
+	if err := json.Indent(&prettyJSON, []byte(str), "", "    "); err != nil {
+		return "", err
+	}
+	return prettyJSON.String(), nil
 }

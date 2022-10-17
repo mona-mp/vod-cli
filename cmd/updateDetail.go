@@ -44,28 +44,102 @@ func init() {
 func updateDetail(args []string, title string, description string) {
 	video_id := strings.Join(args, "")
 
-	payload, err := json.Marshal(map[string]interface{}{
-		"title":       title,
-		"description": description,
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	client := &http.Client{}
-	url := "https://napi.arvancloud.com/vod/2.0/videos/" + video_id
-	req, err := http.NewRequest(http.MethodPatch, url, bytes.NewBuffer(payload))
+	if (len(description)) == 0 {
+		payload, err := json.Marshal(map[string]interface{}{
+			"title": title,
+		})
+		if err != nil {
+			log.Fatal(err)
+		}
+		client := &http.Client{}
+		url := "https://napi.arvancloud.com/vod/2.0/videos/" + video_id
+		req, err := http.NewRequest(http.MethodPatch, url, bytes.NewBuffer(payload))
 
-	req.Header.Add("Authorization", readapikey())
-	req.Header.Set("Content-Type", "application/json")
-	if err != nil {
-		log.Fatal(err)
-	}
+		req.Header.Add("Authorization", readapikey())
+		req.Header.Set("Content-Type", "application/json")
+		if err != nil {
+			log.Fatal(err)
+		}
 
-	resp, err := client.Do(req)
-	if err != nil {
-		log.Fatal(err)
-	}
+		resp, err := client.Do(req)
+		if err != nil {
+			log.Fatal(err)
+		}
 
-	defer resp.Body.Close()
+		defer resp.Body.Close()
+	}
+	if (len(description)) == 0 {
+		payload, err := json.Marshal(map[string]interface{}{
+			"title": title,
+		})
+		if err != nil {
+			log.Fatal(err)
+		}
+		client := &http.Client{}
+		url := "https://napi.arvancloud.com/vod/2.0/videos/" + video_id
+		req, err := http.NewRequest(http.MethodPatch, url, bytes.NewBuffer(payload))
+
+		req.Header.Add("Authorization", readapikey())
+		req.Header.Set("Content-Type", "application/json")
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		resp, err := client.Do(req)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		defer resp.Body.Close()
+	}
+	if (len(title)) == 0 {
+		payload, err := json.Marshal(map[string]interface{}{
+			"description": description,
+		})
+		if err != nil {
+			log.Fatal(err)
+		}
+		client := &http.Client{}
+		url := "https://napi.arvancloud.com/vod/2.0/videos/" + video_id
+		req, err := http.NewRequest(http.MethodPatch, url, bytes.NewBuffer(payload))
+
+		req.Header.Add("Authorization", readapikey())
+		req.Header.Set("Content-Type", "application/json")
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		resp, err := client.Do(req)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		defer resp.Body.Close()
+	}
+	if len(description) != 0 && len(title) != 0 {
+		payload, err := json.Marshal(map[string]interface{}{
+			"title":       title,
+			"description": description,
+		})
+		if err != nil {
+			log.Fatal(err)
+		}
+		client := &http.Client{}
+		url := "https://napi.arvancloud.com/vod/2.0/videos/" + video_id
+		req, err := http.NewRequest(http.MethodPatch, url, bytes.NewBuffer(payload))
+
+		req.Header.Add("Authorization", readapikey())
+		req.Header.Set("Content-Type", "application/json")
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		resp, err := client.Do(req)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		defer resp.Body.Close()
+	}
 
 }

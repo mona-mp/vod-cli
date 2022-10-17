@@ -47,6 +47,7 @@ func getDetail(args []string) {
 	if err != nil {
 		log.Fatalf("error sending HTTP request: %v", err)
 	}
+
 	defer res.Body.Close()
 	responseBytes, err := ioutil.ReadAll(res.Body)
 	if err != nil {

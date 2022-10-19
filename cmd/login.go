@@ -28,7 +28,8 @@ func init() {
 // get the config address
 func getdirectory() string {
 	homedir, _ := os.UserHomeDir()
-	return homedir + "/.arvan-vod/config"
+
+	return homedir + "/.arvan-vod"
 }
 
 // add API key to the config file
@@ -36,13 +37,15 @@ func addapikey(args []string) {
 
 	a2 := args[1]
 	Apikey := []byte(a2)
-	os.WriteFile(getdirectory(), Apikey, 0644)
+
+	os.Mkdir(getdirectory(), 0777)
+	os.WriteFile(getdirectory()+"/config", Apikey, 0644)
 
 }
 
 // read the API key
 func readapikey() (apikey string) {
-	ApiKey, _ := ioutil.ReadFile(getdirectory())
+	ApiKey, _ := ioutil.ReadFile(getdirectory() + "/config")
 
 	return "Apikey " + string(ApiKey)
 }

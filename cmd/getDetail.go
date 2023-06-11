@@ -17,7 +17,7 @@ var getDetailCmd = &cobra.Command{
 	Use:   "getDetail",
 	Short: "Get video detail",
 	Long: `Get the video detail using this command.example:
-	arvan-vod-cli getDetail <video-id>`,
+	vod-cli getDetail <video-id>`,
 	Run: func(cmd *cobra.Command, args []string) {
 		getDetail(args)
 	},
@@ -33,7 +33,7 @@ func getDetail(args []string) {
 	args2 := strings.Join(args, "")
 	req, err := http.NewRequest(
 		http.MethodGet,
-		"https://napi.arvancloud.com/vod/2.0/videos/"+args2,
+		"https://test.com/vod/2.0/videos/"+args2,
 		nil,
 	)
 

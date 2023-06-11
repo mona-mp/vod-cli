@@ -15,7 +15,7 @@ var loginCmd = &cobra.Command{
 	Use:   "login",
 	Short: "A brief description of your command",
 	Long: `Log in to Arvan API and save login for subsequent use.example:
-	arvan-vod-cli login <APIKEY>`,
+	vod-cli login <APIKEY>`,
 	Run: func(cmd *cobra.Command, args []string) {
 		addapikey(args)
 	},
@@ -28,7 +28,7 @@ func init() {
 // get the config address
 func getdirectory() string {
 	homedir, _ := os.UserHomeDir()
-	return homedir + "/.arvan-vod/config"
+	return homedir + "/.vod/config"
 }
 
 // add API key to the config file

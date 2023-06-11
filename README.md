@@ -1,7 +1,7 @@
-# Arvan-VOD-CLI
+# vod-CLI
 
 This project is a CLI for managing arvan vod Service.
-The command arvan-vod-cli can get video detail or update video detail.
+The command vod-cli can get video detail or update video detail.
 
 ## How its created?
 
@@ -20,7 +20,7 @@ To create this CLI, first,  it needed to install **Go** and **cobra** .
  First, create a directory for the project:
   ```bash
    cd go/src/
-   mkdir arvan-vod-cli
+   mkdir vod-cli
    ```
   Initialize the go project and add the go.mode file:
   ```bash
@@ -31,18 +31,18 @@ To create this CLI, first,  it needed to install **Go** and **cobra** .
 With the below command, the CLI initialized for the project :
 
 ```bash
-cobra init arvan-vod-cli
+cobra init vod-cli
 ```
 
 It created a few files in the project:
 
-> arvan-vod-cli/
+> vod-cli/
 >>&nbsp; cmd/
 >>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;root.go
 >>
 >>main.go
 
-In the main.go, the Execute() function of the cmd/root.go is called. In root.go, the root command is initialized and is  ```arvan-vod-cli```.All the other command in the CLI is the child of the root command.
+In the main.go, the Execute() function of the cmd/root.go is called. In root.go, the root command is initialized and is  ```vod-cli```.All the other command in the CLI is the child of the root command.
 
 There are three child commands: login, getDetail, and updateDetail.
 Each of them was created with ``` cobra add <CHILD-COMMAND-NAME>```, and new files for them were created in the cmd directory.
@@ -52,22 +52,22 @@ Each of them was created with ``` cobra add <CHILD-COMMAND-NAME>```, and new fil
 To use this CLI and connect to the API,  give the API key for authentication.
 To set the APIKey,  use the command below and give the APIKey:
 ```bash
-arvan-vod-cli login <API-KEY>
+vod-cli login <API-KEY>
 ```
 
 ### How does it work?
-To save the APIKey, the directory ``` .arvan-vod```  was created with a config file in it  . After that, save the given key in this file.
+To save the APIKey, the directory ``` .vod```  was created with a config file in it  . After that, save the given key in this file.
 There are three functions for it:
 
 - getdirectory(): It gets the user's home directory address and adds the config address to it, and returns it like this:
-```User/mona/.arvan-vod/config```
+```User/mona/.vod/config```
 - addapikey(): This function saves the APIKey, that the user gave to the address that the getdirectory() returns.
 - readapikey(): It defines reading the API key from the file and using it in the API requests.
 
 ## GetDetail
 With this command, get the detail of the videos by passing the video-id.
 ```bash
-arvan-vod-cli getDetail <VIDEO-ID>
+vod-cli getDetail <VIDEO-ID>
 ```
 ### How does it work?
  It gets the video-id from the CLI and the APIKey from the readapikey(), sets it as an "Authorization" header for the request, and sends a GET HTTP request.
@@ -86,11 +86,11 @@ Two flags were defined for it  :
 To update these two parameters,  use the below command:
 
 ```bash
-arvan-vod-cli updateDetail <VIDEO-ID> --title <NEW-TITLE> --description <NEW-DESCRIPTION>
+vod-cli updateDetail <VIDEO-ID> --title <NEW-TITLE> --description <NEW-DESCRIPTION>
 ```
 **Note:** To set a new description, it is necessary to use " " to send it like :
 ```bash
-arvan-vod-cli updateDetail 2374633874 --title change-title --description "it is to change a title"
+vod-cli updateDetail 2374633874 --title change-title --description "it is to change a title"
 ```
  ### How does it work?
 Get the video-id, title, and description from CLI args and flags and create an HTTP PATCH request.
@@ -98,9 +98,9 @@ Get the video-id, title, and description from CLI args and flags and create an H
 ## Using this CLI
 This command generates the binary or executable file of the project in the ```$GOPATH/bin``` folder.
 ```bash
-go install arvan-vod-cli
+go install vod-cli
 ```
-Now run `arvan-vod-cli`  in the terminal. As it is saved in the bin folder, there is no need to set the environment variable for this.
+Now run `vod-cli`  in the terminal. As it is saved in the bin folder, there is no need to set the environment variable for this.
 
 ## Challenges
 

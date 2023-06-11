@@ -1,4 +1,4 @@
-module arvan-vod-cli
+module vod-cli
 
 go 1.17
 

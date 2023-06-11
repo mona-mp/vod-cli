@@ -52,7 +52,7 @@ func updateDetail(args []string, title string, description string) {
 		log.Fatal(err)
 	}
 	client := &http.Client{}
-	url := "https://napi.arvancloud.com/vod/2.0/videos/" + video_id
+	url := "https://test.com/vod/2.0/videos/" + video_id
 	req, err := http.NewRequest(http.MethodPatch, url, bytes.NewBuffer(payload))
 
 	req.Header.Add("Authorization", readapikey())

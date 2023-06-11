@@ -8,9 +8,9 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "arvan-vod-cli",
-	Short: "It is the arvan vod cli which you can use to manage your videos",
-	Long:  "Arvan VOD Client \nThis client helps you manage your videos in Arvan VOD Service, get videos detail or update them.",
+	Use:   "vod-cli",
+	Short: "It is the vod cli which you can use to manage your videos",
+	Long:  " VOD Client \nThis client helps you manage your videos in  VOD Service, get videos detail or update them.",
 }
 
 func Execute() {

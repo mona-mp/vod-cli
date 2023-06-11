@@ -1,6 +1,6 @@
 # vod-CLI
 
-This project is a CLI for managing arvan vod Service.
+This project is a CLI for managing  vod Service.
 The command vod-cli can get video detail or update video detail.
 
 ## How its created?

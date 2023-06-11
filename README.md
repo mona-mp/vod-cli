@@ -24,7 +24,7 @@ To create this CLI, first,  it needed to install **Go** and **cobra** .
    ```
   Initialize the go project and add the go.mode file:
   ```bash
-   go mode init avarn-vod-cli
+   go mode init vod-cli
    ```
 **Note:** The *go.mod* file defines the module's module path, the import path used for the root directory, and its dependency requirements, which are the other modules needed for a successful build.
 
